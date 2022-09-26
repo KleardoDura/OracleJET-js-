@@ -98,17 +98,12 @@ define(['knockout', 'ojs/ojbootstrap', 'ojs/ojarraydataprovider', 'ojs/ojcontext
         }; 
        
 
-        this.deptObservableArray.push(dept);
-
-        
+        this.deptObservableArray.push(dept);     
 
 
 if(dept.Gender=='Male'){
   maleN++;
 }
-
-
-
 if (dept.Gender=='Female'){
   femaleN++;
 }
@@ -124,77 +119,11 @@ if(dept.Gender!='Male' && dept.Gender!='Female')
         
 valueCache={}
 
-ChartData(PieArray);
-
-/*
-      peopleN=0;
-      maleN=0;
-      femaleN=0;
-      peopleN=0;
-      notSelected=0;
-     
-        for (var j = 0; j < deptArray.length; j++){
-  
-          peopleN++;
-          if (!deptArray[j].Gender) {
-            // deptArray[j].Gender  was empty string, false, 0, null, undefined, ...
-            notSelected++;
-        }
-  
-          if(deptArray[j].Gender==='Male'){
-            maleN++;
-          }
-          if(deptArray[j].Gender==='Female'){
-            femaleN++;
-          }
-  
-            
-        }
-
-      this.UserPieDataProvider =ko.observable( new ArrayDataProvider([
-     
-        {
-          "id": 1,
-          "series": "Male",
-          "group": "Group A",
-          "value": maleN
-        },
-        {
-          "id": 2,
-          "series": "Female",
-          "group": "Group A",
-          "value": femaleN
-        },
-        {
-          "id": 3,
-          "series": "Not Selected",
-          "group": "Group A",
-          "value": notSelected
-        }
-
-      ], {
-        keyAttributes: 'id',
-    }));
- */
-  
-       
-          
-         
-  
+ChartData(PieArray);     
        // console.log('People:', peopleN);
        // console.log( 'Male:', maleN);
-    
-
-
-
-
-
-
-
 
       }.bind(this);
-  
-      
   
       // intialize the observable values in the forms
       this.inputFirstName=ko.observable(null);
@@ -216,72 +145,8 @@ ChartData(PieArray);
          keyAttributes:'label',
       }));
 
-
-
-///////////////////////////Provojme grafikun:
-
-/*
-      peopleN=0;
-      maleN=0;
-      femaleN=0;
-      peopleN=0;
-      notSelected=0;
-      for (var j = 0; j < deptArray.length; j++){
-
-        peopleN++;
-        if (!deptArray[j].Gender) {
-          // deptArray[j].Gender  was empty string, false, 0, null, undefined, ...
-          notSelected++;
-      }
-
-        if(deptArray[j].Gender==='Male'){
-          maleN++;
-        }
-        if(deptArray[j].Gender==='Female'){
-          femaleN++;
-        }
-
-
-
-       
-        
-        }*/
-
       console.log( peopleN);
 
-/*
-
-   
-
-      this.UserPieDataProvider =ko.observable( new ArrayDataProvider([
-     
-        {
-          "id": 1,
-          "series": "Male",
-          "group": "Group A",
-          "value": maleN
-        },
-        {
-          "id": 2,
-          "series": "Female",
-          "group": "Group A",
-          "value": femaleN
-        },
-        {
-          "id": 3,
-          "series": "Not Selected",
-          "group": "Group A",
-          "value": notSelected
-        }
-
-      ], {
-        keyAttributes: 'id',
-    }));
-
-*/
-
- 
-////////////////////////////////////////////////////////////
    
     }
 
