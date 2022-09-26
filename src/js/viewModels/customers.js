@@ -17,24 +17,70 @@
 /////////////////////////////////////////////////////////
 
 
-
+       
+  
 
 define(['knockout', 'ojs/ojbootstrap', 'ojs/ojarraydataprovider', 'ojs/ojcontext', 'ojs/ojknockout', 'ojs/ojinputtext',
     'ojs/ojinputnumber', 'ojs/ojtable','ojs/ojdatetimepicker','ojs/ojformlayout','ojs/ojselectsingle', 'ojs/ojlabel', 
     'ojs/ojchart','ojs/ojvalidationgroup'],
-  function (ko, Bootstrap, ArrayDataProvider, Context) {
+  function (ko, Bootstrap, ArrayDataProvider, Context , maleN=0,
+     femaleN=0,
+     peopleN=0,
+     notSelected=0) {
+
+  
     function CustomerViewModel() {
-      var deptArray = [
+      var deptArray =[];
+   /*    [
       { FirstName: 'klei', LastName: 'Dura', Birthday:'2002-07-13',Gender:'Male',Birthplace:'Athine', Age: 20 },
       { FirstName: 'Ana', LastName: 'Stefani',Gender:'Female' ,Birthday:'1996-07-02', Age: 26 }];
-      
-      
+*/
+     
+
+
+
+
+      var PieArray=[];
+
+
       this.deptObservableArray = ko.observableArray(deptArray);
       this.dataprovider = new ArrayDataProvider(this.deptObservableArray, { keyAttributes: '@index' });
       this.groupValid = ko.observable();
       this.isEmptyTable = ko.computed(function () {
         return this.deptObservableArray().length === 0;
       }, this);
+
+
+
+    PieArray=[
+     
+      {
+        "id": 1,
+        "series": "Male",
+        "group": "Group A",
+        "value": maleN
+      },
+      {
+        "id": 2,
+        "series": "Female",
+        "group": "Group A",
+        "value": femaleN
+      },
+      {
+        "id": 3,
+        "series": "Not Selected",
+        "group": "Group A",
+        "value": notSelected
+      }
+
+    ];
+
+    
+    var ChartData=ko.observableArray(PieArray);
+    this.UserPieDataProvider =new ArrayDataProvider(ChartData , {
+      keyAttributes: 'id',
+  });
+
 
       // add to the observableArray
       this.addRow = function () {
@@ -53,6 +99,99 @@ define(['knockout', 'ojs/ojbootstrap', 'ojs/ojarraydataprovider', 'ojs/ojcontext
        
 
         this.deptObservableArray.push(dept);
+
+        
+
+
+if(dept.Gender=='Male'){
+  maleN++;
+}
+
+
+
+if (dept.Gender=='Female'){
+  femaleN++;
+}
+if(dept.Gender!='Male' && dept.Gender!='Female')
+  
+  {notSelected++;}
+
+        PieArray[0].value=maleN;
+
+
+        PieArray[1].value=femaleN;
+        PieArray[2].value=notSelected;
+        
+valueCache={}
+
+ChartData(PieArray);
+
+/*
+      peopleN=0;
+      maleN=0;
+      femaleN=0;
+      peopleN=0;
+      notSelected=0;
+     
+        for (var j = 0; j < deptArray.length; j++){
+  
+          peopleN++;
+          if (!deptArray[j].Gender) {
+            // deptArray[j].Gender  was empty string, false, 0, null, undefined, ...
+            notSelected++;
+        }
+  
+          if(deptArray[j].Gender==='Male'){
+            maleN++;
+          }
+          if(deptArray[j].Gender==='Female'){
+            femaleN++;
+          }
+  
+            
+        }
+
+      this.UserPieDataProvider =ko.observable( new ArrayDataProvider([
+     
+        {
+          "id": 1,
+          "series": "Male",
+          "group": "Group A",
+          "value": maleN
+        },
+        {
+          "id": 2,
+          "series": "Female",
+          "group": "Group A",
+          "value": femaleN
+        },
+        {
+          "id": 3,
+          "series": "Not Selected",
+          "group": "Group A",
+          "value": notSelected
+        }
+
+      ], {
+        keyAttributes: 'id',
+    }));
+ */
+  
+       
+          
+         
+  
+       // console.log('People:', peopleN);
+       // console.log( 'Male:', maleN);
+    
+
+
+
+
+
+
+
+
       }.bind(this);
   
       
@@ -78,48 +217,80 @@ define(['knockout', 'ojs/ojbootstrap', 'ojs/ojarraydataprovider', 'ojs/ojcontext
       }));
 
 
+
 ///////////////////////////Provojme grafikun:
 
+/*
+      peopleN=0;
+      maleN=0;
+      femaleN=0;
+      peopleN=0;
+      notSelected=0;
+      for (var j = 0; j < deptArray.length; j++){
+
+        peopleN++;
+        if (!deptArray[j].Gender) {
+          // deptArray[j].Gender  was empty string, false, 0, null, undefined, ...
+          notSelected++;
+      }
+
+        if(deptArray[j].Gender==='Male'){
+          maleN++;
+        }
+        if(deptArray[j].Gender==='Female'){
+          femaleN++;
+        }
+
+
+
+       
+        
+        }*/
+
+      console.log( peopleN);
+
+/*
+
+   
 
       this.UserPieDataProvider =ko.observable( new ArrayDataProvider([
-        {
-          "id": 0,
-          "series": "Series 1",
-          "group": "Group A",
-          "value": 42
-        },
+     
         {
           "id": 1,
-          "series": "Series 2",
+          "series": "Male",
           "group": "Group A",
-          "value": 1
+          "value": maleN
         },
         {
           "id": 2,
-          "series": "Series 3",
+          "series": "Female",
           "group": "Group A",
-          "value": 36
+          "value": femaleN
         },
         {
           "id": 3,
-          "series": "Series 4",
+          "series": "Not Selected",
           "group": "Group A",
-          "value": 22
-        },
-        {
-          "id": 4,
-          "series": "Series 5",
-          "group": "Group A",
-          "value": 22
+          "value": notSelected
         }
+
       ], {
         keyAttributes: 'id',
     }));
 
+*/
 
  
 ////////////////////////////////////////////////////////////
+   
     }
+
+
+ 
+
+
    return CustomerViewModel;
   }
+
+  
 );
